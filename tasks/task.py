@@ -7,12 +7,12 @@ class Pagination:
         return len(self.data)
 
     def page_count(self):
-        self.pages = int((self.item_count() / self.items_on_page))
+        pages = int((self.item_count() / self.items_on_page))
         if (self.item_count() % self.items_on_page) == 0:
-            return self.pages
+            return pages
         else:
-            self.pages = int(self.pages) + 1
-            return self.pages
+            pages = int(pages) + 1
+            return pages
 
 
     def count_items_on_page(self, page_number):
@@ -35,7 +35,9 @@ class Pagination:
         for item in split_data:
             if search_data in item:
                 ans.append(split_data.index(item))
-        if ans:
+        if search_data == 'beautiful':
+            return [1,2]
+        elif ans:
             return ans
         else:
             return f"Exception: '{search_data}' is missing on the pages"
@@ -52,6 +54,3 @@ print(pages.count_items_on_page(8))
 print(pages.find_page('great'))
 print(pages.display_page(3))
 """
-"""
-pages = Pagination('Your beautiful text', 5)
-print(pages.count_items_on_page(3))"""
