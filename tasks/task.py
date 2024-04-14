@@ -19,12 +19,12 @@ class Pagination:
         if (self.item_count() % self.items_on_page) == 0:
             return self.items_on_page
         else:
-            self.pagin = []
-            for page in range(self.pages):
-                self.pagin.append(self.items_on_page)
-            self.pagin[-1] =  self.item_count() % self.items_on_page
+            pagin = []
+            for page in range(self.page_count()):
+                pagin.append(self.items_on_page)
+            pagin[-1] =  self.item_count() % self.items_on_page
             try:
-                return self.pagin[page_number]
+                return pagin[page_number]
             except IndexError:
                 return ("Exception: Invalid index. Page is missing.")
 
@@ -52,3 +52,6 @@ print(pages.count_items_on_page(8))
 print(pages.find_page('great'))
 print(pages.display_page(3))
 """
+"""
+pages = Pagination('Your beautiful text', 5)
+print(pages.count_items_on_page(3))"""
