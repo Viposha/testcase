@@ -1,5 +1,5 @@
 class Pagination:
-    def __init__(self, data, items_on_page):
+    def __init__(self, data:str, items_on_page:int):
         self.data = data
         self.items_on_page = items_on_page
 
