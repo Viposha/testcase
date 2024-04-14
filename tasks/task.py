@@ -3,6 +3,7 @@ class Pagination:
         self.data = data
         self.items_on_page = items_on_page
 
+    @property
     def item_count(self):
         return len(self.data)
 
@@ -29,6 +30,7 @@ class Pagination:
                 return ("Exception: Invalid index. Page is missing.")
 
 
+
     def find_page(self, search_data):
         split_data = [self.data[i:i+self.items_on_page] for i in range(0, len(self.data), self.items_on_page)]
         ans = []
@@ -40,7 +42,7 @@ class Pagination:
         elif ans:
             return ans
         else:
-            return f"Exception: '{search_data}' is missing on the pages"
+            raise Exception (f"Exception: '{search_data}' is missing on the pages")
     def display_page(self, page_number):
         split_data = [self.data[i:i + self.items_on_page] for i in range(0, len(self.data), self.items_on_page)]
         return split_data[page_number]
