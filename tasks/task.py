@@ -31,14 +31,24 @@ class Pagination:
 
     def find_page(self, search_data):
         split_data = [self.data[i:i+self.items_on_page] for i in range(0, len(self.data), self.items_on_page)]
-        if search_data in split_data:
-            return split_data.index(search_data)
+        ans = []
+        for item in split_data:
+            if search_data in item:
+                ans.append(split_data.index(item))
+        if ans:
+            return ans
+        else:
+            return f"Exception: '{search_data}' is missing on the pages"
     def display_page(self, page_number):
-        pass
+        split_data = [self.data[i:i + self.items_on_page] for i in range(0, len(self.data), self.items_on_page)]
+        return split_data[page_number]
 
+"""
 pages = Pagination('Your beautiful text', 5)
 print(pages.page_count())
 print(pages.item_count())
 print(pages.count_items_on_page(0))
 print(pages.count_items_on_page(8))
-print(pages.find_page('Your '))
+print(pages.find_page('great'))
+print(pages.display_page(3))
+"""
